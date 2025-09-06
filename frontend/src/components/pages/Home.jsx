@@ -3,13 +3,24 @@ import LatestBlogs from "../miniComponents/LatestBlog";
 import HeroSection from "../miniComponents/HeroSection";
 import TrendingBlogs from "../miniComponents/TrendingBlogs";
 import PopularAuthors from "../miniComponents/PopularAuthors";
+import DiscoveryResultsModal from "./DiscoveryResultsModal"; // Add this import
 import { Context } from "../../main";
 import "./home.css";
+import "../../DiscoveryResultsModal.css"; // Add this import
 
 const Home = () => {
   const { mode, blogs } = useContext(Context);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Discovery Engine State
+  const [discoverySettings, setDiscoverySettings] = useState({
+    mood: "curious",
+    readingTime: "5",
+    topics: ["technology"]
+  });
+  const [discoveredBlogs, setDiscoveredBlogs] = useState([]);
+  const [showDiscoveryModal, setShowDiscoveryModal] = useState(false); // Renamed for clarity
   
   const categories = ["All", "Technology", "Lifestyle", "Travel", "Food", "Health", "Business", "Education"];
   
@@ -28,6 +39,75 @@ const Home = () => {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
+
+  // Discovery Engine Functions
+  const handleMoodChange = (mood) => {
+    setDiscoverySettings(prev => ({ ...prev, mood }));
+  };
+
+  const handleTimeChange = (time) => {
+    setDiscoverySettings(prev => ({ ...prev, readingTime: time }));
+  };
+
+  const handleTopicToggle = (topic) => {
+    setDiscoverySettings(prev => ({
+      ...prev,
+      topics: prev.topics.includes(topic)
+        ? prev.topics.filter(t => t !== topic)
+        : [...prev.topics, topic]
+    }));
+  };
+
+  const findPerfectRead = () => {
+    // Mock discovery algorithm based on user preferences
+    let filteredResults = blogs.filter(blog => {
+      // Filter by topics
+      const topicMatch = discoverySettings.topics.length === 0 || 
+        discoverySettings.topics.some(topic => 
+          blog.category.toLowerCase() === topic.toLowerCase() ||
+          blog.title.toLowerCase().includes(topic.toLowerCase()) ||
+          (blog.tags && blog.tags.some(tag => tag.toLowerCase().includes(topic.toLowerCase())))
+        );
+
+      // Mock reading time filter (assuming each blog has readingTime or calculate from content length)
+      const readingTimeMatch = true; // You can implement actual reading time logic here
+
+      return topicMatch && readingTimeMatch;
+    });
+
+    // Sort by mood preferences
+    if (discoverySettings.mood === "inspired") {
+      filteredResults = filteredResults.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    } else if (discoverySettings.mood === "focused") {
+      filteredResults = filteredResults.filter(blog => 
+        blog.category === "Business" || blog.category === "Education" || blog.category === "Technology"
+      );
+    } else if (discoverySettings.mood === "relaxed") {
+      filteredResults = filteredResults.filter(blog => 
+        blog.category === "Lifestyle" || blog.category === "Travel" || blog.category === "Food"
+      );
+    }
+
+    // Limit results and add some randomization for variety
+    const shuffled = filteredResults.sort(() => 0.5 - Math.random());
+    setDiscoveredBlogs(shuffled.slice(0, 6));
+    setShowDiscoveryModal(true); // Open modal instead of inline results
+  };
+
+  const resetDiscovery = () => {
+    setShowDiscoveryModal(false);
+    setDiscoveredBlogs([]);
+    setDiscoverySettings({
+      mood: "curious",
+      readingTime: "5",
+      topics: ["technology"]
+    });
+  };
+
+  const closeDiscoveryModal = () => {
+    setShowDiscoveryModal(false);
+  };
+  
 
   return (
     <div className={`home-container ${mode === "dark" ? "dark-theme" : "light-theme"}`}>
@@ -199,66 +279,76 @@ const Home = () => {
                 <div className="discovery-section">
                   <h4>How are you feeling today?</h4>
                   <div className="mood-selector">
-                    <div className="mood-option active" data-mood="curious">
-                      <span className="mood-emoji">🤔</span>
-                      <span className="mood-label">Curious</span>
-                    </div>
-                    <div className="mood-option" data-mood="inspired">
-                      <span className="mood-emoji">💡</span>
-                      <span className="mood-label">Inspired</span>
-                    </div>
-                    <div className="mood-option" data-mood="relaxed">
-                      <span className="mood-emoji">😌</span>
-                      <span className="mood-label">Relaxed</span>
-                    </div>
-                    <div className="mood-option" data-mood="focused">
-                      <span className="mood-emoji">🎯</span>
-                      <span className="mood-label">Focused</span>
-                    </div>
+                    {[
+                      { id: "curious", emoji: "🤔", label: "Curious" },
+                      { id: "inspired", emoji: "💡", label: "Inspired" },
+                      { id: "relaxed", emoji: "😌", label: "Relaxed" },
+                      { id: "focused", emoji: "🎯", label: "Focused" }
+                    ].map((mood) => (
+                      <div 
+                        key={mood.id}
+                        className={`mood-option ${discoverySettings.mood === mood.id ? 'active' : ''}`} 
+                        onClick={() => handleMoodChange(mood.id)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <span className="mood-emoji">{mood.emoji}</span>
+                        <span className="mood-label">{mood.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
                 {/* Reading Time Selector */}
+                
                 <div className="discovery-section">
                   <h4>How much time do you have?</h4>
                   <div className="time-selector">
-                    <div className="time-option active" data-time="5">
-                      <span className="time-number">5</span>
-                      <span className="time-label">min</span>
-                    </div>
-                    <div className="time-option" data-time="10">
-                      <span className="time-number">10</span>
-                      <span className="time-label">min</span>
-                    </div>
-                    <div className="time-option" data-time="15">
-                      <span className="time-number">15</span>
-                      <span className="time-label">min</span>
-                    </div>
-                    <div className="time-option" data-time="20+">
-                      <span className="time-number">20+</span>
-                      <span className="time-label">min</span>
-                    </div>
+                    {[
+                      { id: "5", number: "5", label: "min" },
+                      { id: "10", number: "10", label: "min" },
+                      { id: "15", number: "15", label: "min" },
+                      { id: "20+", number: "20+", label: "min" }
+                    ].map((time) => (
+                      <div 
+                        key={time.id}
+                        className={`time-option ${discoverySettings.readingTime === time.id ? 'active' : ''}`} 
+                        onClick={() => handleTimeChange(time.id)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <span className="time-number">{time.number}</span>
+                        <span className="time-label">{time.label}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
                 {/* Topic Interest Cloud */}
-                <div className="discovery-section">
+                 <div className="discovery-section">
                   <h4>What interests you?</h4>
                   <div className="topic-cloud">
-                    <span className="topic-tag active" data-topic="technology">Technology</span>
-                    <span className="topic-tag" data-topic="lifestyle">Lifestyle</span>
-                    <span className="topic-tag" data-topic="business">Business</span>
-                    <span className="topic-tag" data-topic="travel">Travel</span>
-                    <span className="topic-tag" data-topic="health">Health</span>
-                    <span className="topic-tag" data-topic="education">Education</span>
-                    <span className="topic-tag" data-topic="food">Food</span>
-                    <span className="topic-tag" data-topic="science">Science</span>
+                    {["technology", "lifestyle", "business", "travel", "health", "education", "food", "science"].map((topic) => (
+                      <span 
+                        key={topic}
+                        className={`topic-tag ${discoverySettings.topics.includes(topic) ? 'active' : ''}`} 
+                        onClick={() => handleTopicToggle(topic)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        {topic.charAt(0).toUpperCase() + topic.slice(1)}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
+
                 {/* Discovery Button */}
                 <div className="discovery-action">
-                  <button className="find-content-btn">
+                  <button 
+                    className="find-content-btn"
+                    onClick={findPerfectRead}
+                  >
                     <span>Find My Perfect Read</span>
                     <div className="btn-shine"></div>
                     <div className="btn-sparkle">✨</div>
@@ -284,6 +374,8 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Remove the old inline results section and replace with modal */}
+
         <section className="content-section authors-wrapper">
           <div className="section-decorator">
             <div className="author-decoration">👥</div>
@@ -291,6 +383,15 @@ const Home = () => {
           <PopularAuthors />
         </section>
       </article>
+
+      {/* Add the Discovery Results Modal */}
+      <DiscoveryResultsModal 
+        isOpen={showDiscoveryModal}
+        onClose={closeDiscoveryModal}
+        blogs={discoveredBlogs}
+        preferences={discoverySettings}
+        onReset={resetDiscovery}
+      />
     </div>
   );
 };
