@@ -46,7 +46,7 @@ const Navbar = () => {
     >
       <nav>
         <div className="logo">
-          Zeta<span>Blog</span>
+          Echo<span>Bloom</span>
         </div>
         <div className={show ? "links show" : "links"}>
           <ul>
@@ -70,6 +70,12 @@ const Navbar = () => {
                 ABOUT
               </Link>
             </li>
+            <li>
+              <Link to={"/blogs"} onClick={handleNavbar}>
+                Explore
+              </Link>
+            </li>
+
           </ul>
           <div className="btns">
             <button
@@ -117,3 +123,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
