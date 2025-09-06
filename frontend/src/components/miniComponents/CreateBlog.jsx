@@ -145,6 +145,9 @@ const CreateBlog = () => {
               <option value="Travel">Travel</option>
               <option value="Business">Business</option>
               <option value="Economy">Economy</option>
+              <option value="Food">Food</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
             </select>
           </div>
           <input
