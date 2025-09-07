@@ -71,8 +71,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/blogs"} onClick={handleNavbar}>
-                Explore
+              <Link to={"/chatbot"} onClick={handleNavbar}>
+                ChatBot
               </Link>
             </li>
 
