@@ -7,7 +7,7 @@ const Blogs = () => {
 
   return (
     <article className={mode === "dark" ? "dark-bg" : "light-bg"}>
-      <LatestBlogs blogs={blogs} title={"Blogs"} />
+      <LatestBlogs blogs={blogs} heading="All Blogs" />
     </article>
   );
 };
