@@ -70,7 +70,7 @@ body::before {
   100% { transform: translateX(-550px) translateY(-200px); }
 }
 
-/* Floating cosmic whale/element inspired by the image */
+/* Multiple floating blog elements */
 body::after {
   content: '📝';
   position: fixed;
@@ -84,6 +84,111 @@ body::after {
   pointer-events: none;
   z-index: -1;
   transform-origin: center;
+}
+
+/* Additional floating blog elements */
+.floating-blog-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.floating-blog-elements::before {
+  content: '📄';
+  position: absolute;
+  top: 35%;
+  left: 12%;
+  font-size: 3.5rem;
+  opacity: 0.12;
+  animation: paperFloat 22s ease-in-out infinite;
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 18px rgba(139, 92, 246, 0.3));
+}
+
+.floating-blog-elements::after {
+  content: '✒️';
+  position: absolute;
+  top: 70%;
+  right: 25%;
+  font-size: 3rem;
+  opacity: 0.14;
+  animation: penFloat 18s ease-in-out infinite reverse;
+  color: #10b981;
+  filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
+}
+
+/* More floating elements using pseudo-elements on a new class */
+.more-blog-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.more-blog-elements::before {
+  content: '📋';
+  position: absolute;
+  top: 15%;
+  left: 75%;
+  font-size: 2.8rem;
+  opacity: 0.11;
+  animation: clipboardFloat 20s ease-in-out infinite;
+  color: #f59e0b;
+  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.3));
+}
+
+.more-blog-elements::after {
+  content: '📖';
+  position: absolute;
+  top: 55%;
+  left: 8%;
+  font-size: 3.2rem;
+  opacity: 0.13;
+  animation: bookFloat 24s ease-in-out infinite reverse;
+  color: #06b6d4;
+  filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.3));
+}
+
+/* Even more elements using a third class */
+.extra-blog-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.extra-blog-elements::before {
+  content: '🖊️';
+  position: absolute;
+  top: 80%;
+  left: 65%;
+  font-size: 2.5rem;
+  opacity: 0.1;
+  animation: fountainPenFloat 16s ease-in-out infinite;
+  color: #ec4899;
+  filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.3));
+}
+
+.extra-blog-elements::after {
+  content: '📑';
+  position: absolute;
+  top: 25%;
+  right: 8%;
+  font-size: 2.9rem;
+  opacity: 0.12;
+  animation: documentsFloat 26s ease-in-out infinite reverse;
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.3));
 }
 
 @keyframes cosmicFloat {
@@ -102,6 +207,104 @@ body::after {
   75% { 
     transform: translateY(-30px) translateX(-20px) rotate(-5deg) scale(1.1);
     opacity: 0.18;
+  }
+}
+
+@keyframes paperFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: 0.12;
+  }
+  25% { 
+    transform: translateY(-25px) translateX(15px) rotate(3deg) scale(1.05);
+    opacity: 0.18;
+  }
+  50% { 
+    transform: translateY(-45px) translateX(30px) rotate(6deg) scale(1.1);
+    opacity: 0.15;
+  }
+  75% { 
+    transform: translateY(-25px) translateX(15px) rotate(3deg) scale(1.05);
+    opacity: 0.14;
+  }
+}
+
+@keyframes penFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: 0.14;
+  }
+  30% { 
+    transform: translateY(20px) translateX(-10px) rotate(-8deg) scale(1.08);
+    opacity: 0.19;
+  }
+  60% { 
+    transform: translateY(35px) translateX(-25px) rotate(-15deg) scale(1.15);
+    opacity: 0.16;
+  }
+  80% { 
+    transform: translateY(20px) translateX(-10px) rotate(-8deg) scale(1.08);
+    opacity: 0.17;
+  }
+}
+
+@keyframes clipboardFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: 0.11;
+  }
+  40% { 
+    transform: translateY(-35px) translateX(-20px) rotate(5deg) scale(1.12);
+    opacity: 0.16;
+  }
+  70% { 
+    transform: translateY(-50px) translateX(-35px) rotate(8deg) scale(1.18);
+    opacity: 0.13;
+  }
+}
+
+@keyframes bookFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: 0.13;
+  }
+  35% { 
+    transform: translateY(-20px) translateX(25px) rotate(-4deg) scale(1.06);
+    opacity: 0.18;
+  }
+  65% { 
+    transform: translateY(-40px) translateX(45px) rotate(-7deg) scale(1.14);
+    opacity: 0.15;
+  }
+}
+
+@keyframes fountainPenFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: 0.1;
+  }
+  33% { 
+    transform: translateY(15px) translateX(-15px) rotate(12deg) scale(1.1);
+    opacity: 0.15;
+  }
+  66% { 
+    transform: translateY(25px) translateX(-30px) rotate(20deg) scale(1.2);
+    opacity: 0.12;
+  }
+}
+
+@keyframes documentsFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+    opacity: 0.12;
+  }
+  45% { 
+    transform: translateY(-30px) translateX(20px) rotate(-6deg) scale(1.08);
+    opacity: 0.17;
+  }
+  75% { 
+    transform: translateY(-55px) translateX(40px) rotate(-12deg) scale(1.16);
+    opacity: 0.14;
   }
 }
 
@@ -429,7 +632,7 @@ body.light-mode .chatbot-subtitle {
   color: #64748b;
 }
 
-/* Rest of the original styles with enhancements... */
+/* Enhanced chat window */
 .chat-window {
   padding: 1.5rem 2rem;
   min-height: 500px;
@@ -621,6 +824,38 @@ body.light-mode .message.bot {
   }
 }
 
+/* Typing indicator for bot */
+.message.bot.typing {
+  position: relative;
+  animation: typingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes typingPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.message.bot.typing::after {
+  content: '💭';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  animation: thinkingBubble 2s ease-in-out infinite;
+}
+
+@keyframes thinkingBubble {
+  0%, 100% { 
+    transform: translateY(-50%) scale(1); 
+    opacity: 0.6; 
+  }
+  50% { 
+    transform: translateY(-60%) scale(1.2); 
+    opacity: 1; 
+  }
+}
+
 /* Enhanced input area */
 .input-area {
   padding: 1.5rem 2rem 2rem 2rem;
@@ -667,11 +902,19 @@ body.dark-mode .input-area input {
   color: #e2e8f0;
 }
 
+body.dark-mode .input-area input::placeholder {
+  color: #94a3b8;
+}
+
 /* Light mode input */
 body.light-mode .input-area input {
   background: rgba(255, 255, 255, 0.9);
   border-color: rgba(99, 102, 241, 0.4);
   color: #1f2937;
+}
+
+body.light-mode .input-area input::placeholder {
+  color: #6b7280;
 }
 
 .input-area input:focus {
@@ -696,13 +939,88 @@ body.light-mode .input-area input {
   box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
 }
 
-.input-area button:hover {
+.input-area button:hover:not(:disabled) {
   transform: translateY(-4px);
   box-shadow: 0 15px 50px rgba(59, 130, 246, 0.5);
   background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #0891b2 100%);
 }
 
-/* Responsive design improvements */
+.input-area button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.input-area button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.input-area button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+/* Digital rain effect (optional background element) */
+.digital-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -6;
+  overflow: hidden;
+}
+
+.digital-rain::before {
+  content: '01001010011010010110111001100001011011010110000101110010011000010110111101101111';
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: rgba(59, 130, 246, 0.03);
+  word-wrap: break-word;
+  line-height: 1.2;
+  animation: digitalRainFall 30s linear infinite;
+  white-space: pre-wrap;
+}
+
+@keyframes digitalRainFall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Holographic grid effect */
+.holo-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -7;
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: holoGridMove 60s linear infinite;
+}
+
+@keyframes holoGridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Enhanced responsive design */
 @media (max-width: 768px) {
   body::after {
     font-size: 2.5rem;
@@ -718,17 +1036,55 @@ body.light-mode .input-area input {
   .chatbot-title {
     font-size: 1.9rem;
   }
+  
+  .chatbot-header {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .chat-window {
+    padding: 1rem 1.5rem;
+    min-height: 400px;
+    max-height: 500px;
+  }
+  
+  .message.user::after,
+  .message.bot::before {
+    display: none;
+  }
+  
+  .message {
+    max-width: 90%;
+    padding: 1rem 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .input-area {
     flex-direction: column;
     gap: 1rem;
+    padding: 1.5rem;
   }
   
   .input-area input,
   .input-area button {
     width: 100%;
+  }
+  
+  .chatbot-title {
+    font-size: 1.7rem;
+  }
+  
+  .chatbot-subtitle {
+    font-size: 1rem;
+  }
+  
+  .floating-blog-elements::before,
+  .floating-blog-elements::after,
+  .more-blog-elements::before,
+  .more-blog-elements::after,
+  .extra-blog-elements::before,
+  .extra-blog-elements::after {
+    font-size: 2rem;
   }
 }
 
@@ -740,5 +1096,29 @@ body.light-mode .input-area input {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  .message {
+    animation: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.input-area input:focus,
+.input-area button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body.dark-mode .message.bot {
+    border-color: #3b82f6;
+    background: rgba(15, 23, 42, 0.95);
+  }
+  
+  body.light-mode .message.bot {
+    border-color: #1f2937;
+    background: rgba(255, 255, 255, 0.98);
   }
 }
