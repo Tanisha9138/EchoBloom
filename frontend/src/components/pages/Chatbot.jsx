@@ -56,6 +56,14 @@ function Chatbot() {
       {/* Background effects - these elements are styled by CSS */}
       <div className="digital-rain"></div>
       <div className="holo-grid"></div>
+      <div className="cosmic-nebula"></div>
+      <div className="blog-cosmos"></div>
+      <div className="floating-blog-elements"></div>
+      <div className="more-blog-elements"></div>
+      <div className="extra-blog-elements"></div>
+      <div className="depth-layer-1"></div>
+      <div className="depth-layer-2"></div>
+      <div className="depth-layer-3"></div>
       
       <div className="chatbot-container">
         {/* Header Section */}
