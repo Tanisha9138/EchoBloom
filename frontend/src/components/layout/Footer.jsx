@@ -22,15 +22,15 @@ const Footer = () => {
         <div className="about">
           <h3>About</h3>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Consectetur possimus sed praesentium! Et sunt, distinctio veniam
-            ullam, nesciunt ex laudantium quidem error sint, eum explicabo.
+            EchoBloom is a creative space where voices, ideas, and stories come alive.  
+            From insightful blogs to thought-provoking perspectives, we aim to inspire, 
+            inform, and connect a community of curious minds. 
           </p>
           <p>
-            <span>Email:</span>zk@gmail.com
+            <span>Email:</span>echobloom@gmail.com
           </p>
           <p>
-            <span>Phone:</span>0123987123
+            <span>Phone:</span>9182736450
           </p>
         </div>
         <div className="quick_links">
@@ -73,7 +73,7 @@ const Footer = () => {
           <Link to={"/"} target="_blank">
             <FaGitSquare />
           </Link>
-          <Link to={"https://www.youtube.com/@CodeWithZeeshu"} target="_blank">
+          <Link to={"https://www.youtube.com/@EchoBloom"} target="_blank">
             <AiFillYoutube />
           </Link>
           <Link to={"/"} target="_blank">
