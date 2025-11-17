@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../main";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
   const { mode } = useContext(Context);
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -31,36 +33,68 @@ const About = () => {
     };
   }, []);
 
+  // Navigation handlers for Learn More buttons
+  const handleLearnMore = (featureType) => {
+    switch(featureType) {
+      case 'editor':
+        navigate('/editor-features');
+        break;
+      case 'templates':
+        navigate('/templates');
+        break;
+      case 'analytics':
+        navigate('/analytics-features');
+        break;
+      case 'global':
+        navigate('/global-features');
+        break;
+      case 'community':
+        navigate('/community-features');
+        break;
+      case 'privacy':
+        navigate('/privacy-features');
+        break;
+      default:
+        break;
+    }
+  };
+
   const features = [
     {
       icon: "✍️",
       title: "AI-Powered Editor",
-      description: "Smart writing assistant that helps you craft perfect stories with grammar checks, tone suggestions, and SEO optimization."
+      description: "Smart writing assistant that helps you craft perfect stories with grammar checks, tone suggestions, and SEO optimization.",
+      learnMoreType: "editor"
     },
     {
       icon: "🎨",
       title: "Beautiful Templates",
-      description: "Choose from 50+ professionally designed templates to make your content stand out and engage your audience."
+      description: "Choose from 50+ professionally designed templates to make your content stand out and engage your audience.",
+      learnMoreType: "templates"
     },
     {
       icon: "📊",
       title: "Advanced Analytics",
-      description: "Track your performance with detailed insights on views, engagement, and audience demographics."
+      description: "Track your performance with detailed insights on views, engagement, and audience demographics.",
+      learnMoreType: "analytics"
     },
     {
       icon: "🌐",
       title: "Global Reach",
-      description: "Multi-language support and built-in SEO tools help your content reach readers worldwide."
+      description: "Multi-language support and built-in SEO tools help your content reach readers worldwide.",
+      learnMoreType: "global"
     },
     {
       icon: "💬",
       title: "Interactive Comments",
-      description: "Engage with your audience through threaded comments, reactions, and real-time discussions."
+      description: "Engage with your audience through threaded comments, reactions, and real-time discussions.",
+      learnMoreType: "community"
     },
     {
       icon: "🔒",
       title: "Privacy Control",
-      description: "Complete control over your content visibility with premium membership options and private blogs."
+      description: "Complete control over your content visibility with premium membership options and private blogs.",
+      learnMoreType: "privacy"
     }
   ];
 
@@ -158,11 +192,11 @@ const About = () => {
               Powerful tools, stunning design, and a thriving community—all in one place.
             </p>
             <div className="hero-buttons">
-              <button className="btn-primary">
+              <button className="btn-primary" onClick={() => navigate('/register')}>
                 <span>🚀</span>
                 Start Creating
               </button>
-              <button className="btn-demo">
+              <button className="btn-demo" onClick={() => navigate('/demo')}>
                 <span>▶️</span>
                 Watch Demo
               </button>
@@ -194,7 +228,12 @@ const About = () => {
                 <div className="feature-icon">{feature.icon}</div>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
-                <button className="feature-btn">Learn More →</button>
+                <button 
+                  className="feature-btn"
+                  onClick={() => handleLearnMore(feature.learnMoreType)}
+                >
+                  Learn More →
+                </button>
               </div>
             ))}
           </div>
@@ -296,7 +335,7 @@ const About = () => {
                 <li>✅ Built-in analytics dashboard</li>
                 <li>✅ Mobile-responsive designs</li>
               </ul>
-              <button className="btn-demo-large">
+              <button className="btn-demo-large" onClick={() => navigate('/demo')}>
                 <span>🎬</span>
                 Watch Full Demo
               </button>
@@ -379,11 +418,11 @@ const About = () => {
             <p>Join the EchoBloom community today and transform the way you create and share content. 
                Your audience is waiting to hear your unique voice.</p>
             <div className="cta-buttons">
-              <button className="btn-primary-large">
+              <button className="btn-primary-large" onClick={() => navigate('/register')}>
                 <span>🎯</span>
                 Get Started Free
               </button>
-              <button className="btn-secondary-large">
+              <button className="btn-secondary-large" onClick={() => navigate('/demo')}>
                 <span>📞</span>
                 Schedule Demo
               </button>
@@ -853,6 +892,11 @@ const About = () => {
           font-size: 2rem;
           margin-right: 1.5rem;
           animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
         }
 
         .testimonial-info h4 {
@@ -1361,451 +1405,3 @@ const About = () => {
 };
 
 export default About;
-
-
-// import React, { useContext, useEffect, useState } from "react";
-// import { Context } from "../../main";
-// import "./About.css";
-
-// const About = () => {
-//   const { mode } = useContext(Context);
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [activeSection, setActiveSection] = useState(0);
-//   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-//   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-//   useEffect(() => {
-//     setIsVisible(true);
-//     const interval = setInterval(() => {
-//       setActiveSection(prev => (prev + 1) % 4);
-//     }, 4000);
-
-//     const testimonialInterval = setInterval(() => {
-//       setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
-//     }, 5000);
-
-//     const handleMouseMove = (e) => {
-//       setMousePosition({ x: e.clientX, y: e.clientY });
-//     };
-
-//     window.addEventListener('mousemove', handleMouseMove);
-
-//     return () => {
-//       clearInterval(interval);
-//       clearInterval(testimonialInterval);
-//       window.removeEventListener('mousemove', handleMouseMove);
-//     };
-//   }, []);
-
-//   const features = [
-//     {
-//       icon: "✍️",
-//       title: "AI-Powered Editor",
-//       description: "Smart writing assistant that helps you craft perfect stories with grammar checks, tone suggestions, and SEO optimization."
-//     },
-//     {
-//       icon: "🎨",
-//       title: "Beautiful Templates",
-//       description: "Choose from 50+ professionally designed templates to make your content stand out and engage your audience."
-//     },
-//     {
-//       icon: "📊",
-//       title: "Advanced Analytics",
-//       description: "Track your performance with detailed insights on views, engagement, and audience demographics."
-//     },
-//     {
-//       icon: "🌐",
-//       title: "Global Reach",
-//       description: "Multi-language support and built-in SEO tools help your content reach readers worldwide."
-//     },
-//     {
-//       icon: "💬",
-//       title: "Interactive Comments",
-//       description: "Engage with your audience through threaded comments, reactions, and real-time discussions."
-//     },
-//     {
-//       icon: "🔒",
-//       title: "Privacy Control",
-//       description: "Complete control over your content visibility with premium membership options and private blogs."
-//     }
-//   ];
-
-//   const values = [
-//     {
-//       icon: "🌱",
-//       title: "Innovation",
-//       description: "Cutting-edge technology meets creative storytelling to deliver exceptional user experiences."
-//     },
-//     {
-//       icon: "🤝",
-//       title: "Community",
-//       description: "Building bridges between diverse perspectives and fostering meaningful connections worldwide."
-//     },
-//     {
-//       icon: "✨",
-//       title: "Quality",
-//       description: "Premium tools and features that help creators produce their best work every time."
-//     },
-//     {
-//       icon: "🎯",
-//       title: "Growth",
-//       description: "Empowering creators to grow their audience and monetize their passion through our platform."
-//     }
-//   ];
-
-//   const testimonials = [
-//     {
-//       name: "Sarah Johnson",
-//       role: "Travel Blogger",
-//       content: "EchoBloom transformed my blogging experience! The AI editor is incredible and my engagement has increased by 300%.",
-//       rating: 5,
-//       avatar: "👩‍💼"
-//     },
-//     {
-//       name: "Mike Chen",
-//       role: "Tech Writer",
-//       content: "The analytics dashboard gives me insights I never had before. I can see exactly what resonates with my audience.",
-//       rating: 5,
-//       avatar: "👨‍💻"
-//     },
-//     {
-//       name: "Emma Rodriguez",
-//       role: "Lifestyle Influencer",
-//       content: "Beautiful templates and seamless publishing. EchoBloom made it so easy to create professional-looking content.",
-//       rating: 5,
-//       avatar: "👩‍🎨"
-//     },
-//     {
-//       name: "David Kim",
-//       role: "Business Coach",
-//       content: "The community features are amazing. I've connected with fellow creators and grown my network significantly.",
-//       rating: 5,
-//       avatar: "👨‍🎓"
-//     }
-//   ];
-
-//   const stats = [
-//     { number: "50K+", label: "Active Creators", icon: "👥" },
-//     { number: "2M+", label: "Stories Published", icon: "📝" },
-//     { number: "120+", label: "Countries", icon: "🌍" },
-//     { number: "99.9%", label: "Uptime", icon: "⚡" }
-//   ];
-
-//   return (
-//     <article className={`${mode === "dark" ? "dark-bg" : "light-bg"} about-page`}>
-//       {/* Custom Cursor */}
-//       <div 
-//         className="custom-cursor" 
-//         style={{ 
-//           left: mousePosition.x, 
-//           top: mousePosition.y,
-//           background: mode === 'dark' ? 'rgba(78, 205, 196, 0.3)' : 'rgba(102, 126, 234, 0.3)'
-//         }}
-//       />
-
-//       {/* Hero Section */}
-//       <section className="hero-section">
-//         <div className="hero-background">
-//           <div className="animated-bg">
-//             {[...Array(20)].map((_, i) => (
-//               <div key={i} className={`bg-shape shape-${i + 1}`} />
-//             ))}
-//           </div>
-//           <div className="particles-container">
-//             {[...Array(50)].map((_, i) => (
-//               <div key={i} className={`particle particle-${i + 1}`} />
-//             ))}
-//           </div>
-//           <div className="gradient-orbs">
-//             <div className="orb orb-1" />
-//             <div className="orb orb-2" />
-//             <div className="orb orb-3" />
-//           </div>
-//         </div>
-//         <div className="container">
-//           <div className={`hero-content ${isVisible ? 'animate-in' : ''}`}>
-//             <h1 className="hero-title">
-//               Welcome to
-//               <span className="gradient-text"> EchoBloom</span>
-//               <br />Where Stories Come Alive
-//             </h1>
-//             <p className="hero-subtitle">
-//               The next-generation blogging platform designed for modern creators. 
-//               Powerful tools, stunning design, and a thriving community—all in one place.
-//             </p>
-//             <div className="hero-buttons">
-//               <button className="btn-primary">
-//                 <span>🚀</span>
-//                 Start Creating
-//               </button>
-//               <button className="btn-demo">
-//                 <span>▶️</span>
-//                 Watch Demo
-//               </button>
-//             </div>
-//             <div className="hero-stats">
-//               {stats.map((stat, index) => (
-//                 <div key={index} className="stat-card">
-//                   <div className="stat-icon">{stat.icon}</div>
-//                   <div className="stat-number">{stat.number}</div>
-//                   <div className="stat-label">{stat.label}</div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Features Section */}
-//       <section className="features-section">
-//         <div className="features-background">
-//           <div className="mesh-gradient" />
-//           <div className="floating-elements">
-//             {[...Array(15)].map((_, i) => (
-//               <div key={i} className={`floating-element element-${i + 1}`} />
-//             ))}
-//           </div>
-//         </div>
-//         <div className="container">
-//           <div className="section-header">
-//             <h2>Powerful Features for Modern Creators</h2>
-//             <p className="section-subtitle">Everything you need to create, publish, and grow your audience</p>
-//             <div className="section-line"></div>
-//           </div>
-//           <div className="features-grid">
-//             {features.map((feature, index) => (
-//               <div key={index} className="feature-card">
-//                 <div className="feature-icon">{feature.icon}</div>
-//                 <h3>{feature.title}</h3>
-//                 <p>{feature.description}</p>
-//                 <button className="feature-btn">Learn More →</button>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Mission & Values Section */}
-//       <section className="mission-section">
-//         <div className="mission-background">
-//           <div className="geometric-pattern" />
-//           <div className="wave-animation" />
-//         </div>
-//         <div className="container">
-//           <div className="mission-content">
-//             <div className="mission-text">
-//               <div className="section-header">
-//                 <h2>Our Mission</h2>
-//                 <div className="section-line"></div>
-//               </div>
-//               <h3>Empowering Every Voice to Make an Impact</h3>
-//               <p>
-//                 EchoBloom is built on the belief that everyone has a story worth telling. 
-//                 We've created a platform that combines cutting-edge technology with intuitive design, 
-//                 making it easier than ever for creators to share their ideas, connect with their audience, 
-//                 and build thriving communities around their content.
-//               </p>
-//               <p>
-//                 Whether you're a seasoned blogger, an aspiring writer, or a business looking to share your expertise, 
-//                 EchoBloom provides the tools and features you need to succeed in the digital landscape.
-//               </p>
-//             </div>
-//             <div className="values-grid">
-//               {values.map((value, index) => (
-//                 <div 
-//                   key={index} 
-//                   className={`value-card ${activeSection === index ? 'active' : ''}`}
-//                 >
-//                   <div className="value-icon">{value.icon}</div>
-//                   <h4>{value.title}</h4>
-//                   <p>{value.description}</p>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Community Testimonials */}
-//       <section className="testimonials-section">
-//         <div className="testimonials-background">
-//           <div className="cosmic-bg">
-//             <div className="star" style={{top: '10%', left: '20%', animationDelay: '0s'}} />
-//             <div className="star" style={{top: '30%', left: '80%', animationDelay: '1s'}} />
-//             <div className="star" style={{top: '60%', left: '15%', animationDelay: '2s'}} />
-//             <div className="star" style={{top: '80%', left: '70%', animationDelay: '3s'}} />
-//             <div className="star" style={{top: '20%', left: '50%', animationDelay: '4s'}} />
-//           </div>
-//           <div className="aurora-effect" />
-//         </div>
-//         <div className="container">
-//           <div className="section-header">
-//             <h2>What Our Community Says</h2>
-//             <p className="section-subtitle">Join thousands of creators who've found their home at EchoBloom</p>
-//             <div className="section-line"></div>
-//           </div>
-//           <div className="testimonials-container">
-//             <div className="testimonial-main">
-//               <div className="testimonial-card active">
-//                 <div className="testimonial-header">
-//                   <div className="testimonial-avatar">
-//                     {testimonials[currentTestimonial].avatar}
-//                   </div>
-//                   <div className="testimonial-info">
-//                     <h4>{testimonials[currentTestimonial].name}</h4>
-//                     <p>{testimonials[currentTestimonial].role}</p>
-//                     <div className="rating">
-//                       {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-//                         <span key={i}>⭐</span>
-//                       ))}
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <blockquote>"{testimonials[currentTestimonial].content}"</blockquote>
-//               </div>
-//             </div>
-//             <div className="testimonial-dots">
-//               {testimonials.map((_, index) => (
-//                 <button
-//                   key={index}
-//                   className={`dot ${index === currentTestimonial ? 'active' : ''}`}
-//                   onClick={() => setCurrentTestimonial(index)}
-//                 />
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Demo Section */}
-//       <section className="demo-section">
-//         <div className="demo-background">
-//           <div className="hexagon-pattern" />
-//           <div className="glow-effects">
-//             <div className="glow glow-1" />
-//             <div className="glow glow-2" />
-//             <div className="glow glow-3" />
-//           </div>
-//         </div>
-//         <div className="container">
-//           <div className="demo-content">
-//             <div className="demo-text">
-//               <h2>See EchoBloom in Action</h2>
-//               <p>
-//                 Discover how easy it is to create stunning content with our intuitive editor, 
-//                 customize your blog with beautiful themes, and engage with your growing community.
-//               </p>
-//               <ul className="demo-features">
-//                 <li>✅ Drag & drop content editor</li>
-//                 <li>✅ Real-time collaboration</li>
-//                 <li>✅ Advanced SEO optimization</li>
-//                 <li>✅ Built-in analytics dashboard</li>
-//                 <li>✅ Mobile-responsive designs</li>
-//               </ul>
-//               <button className="btn-demo-large">
-//                 <span>🎬</span>
-//                 Watch Full Demo
-//               </button>
-//             </div>
-//             <div className="demo-video">
-//               <div className="video-placeholder">
-//                 <div className="play-button">
-//                   <span>▶️</span>
-//                 </div>
-//                 <div className="video-overlay">
-//                   <h4>Platform Demo</h4>
-//                   <p>3:45 minutes</p>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Team Section */}
-//       <section className="team-section">
-//         <div className="team-background">
-//           <div className="circuit-pattern" />
-//           <div className="energy-waves" />
-//         </div>
-//         <div className="container">
-//           <div className="section-header">
-//             <h2>Meet the Creators Behind EchoBloom</h2>
-//             <p className="section-subtitle">A passionate team dedicated to revolutionizing digital storytelling</p>
-//             <div className="section-line"></div>
-//           </div>
-//           <div className="team-grid">
-//             <div className="team-member">
-//               <div className="member-avatar">
-//                 <div className="avatar-bg">👩‍💼</div>
-//               </div>
-//               <h4>Alex Chen</h4>
-//               <p className="member-role">Founder & CEO</p>
-//               <p className="member-bio">Former product designer at tech giants, passionate about creating tools that empower creators.</p>
-//               <div className="social-links">
-//                 <span>🐦</span><span>💼</span><span>🌐</span>
-//               </div>
-//             </div>
-//             <div className="team-member">
-//               <div className="member-avatar">
-//                 <div className="avatar-bg">👨‍💻</div>
-//               </div>
-//               <h4>Jordan Smith</h4>
-//               <p className="member-role">Lead Developer</p>
-//               <p className="member-bio">Full-stack engineer with expertise in scalable platforms and user experience optimization.</p>
-//               <div className="social-links">
-//                 <span>💻</span><span>📧</span><span>🔗</span>
-//               </div>
-//             </div>
-//             <div className="team-member">
-//               <div className="member-avatar">
-//                 <div className="avatar-bg">👩‍🎨</div>
-//               </div>
-//               <h4>Maya Patel</h4>
-//               <p className="member-role">Head of Community</p>
-//               <p className="member-bio">Community building expert focused on creating inclusive spaces for creators to thrive.</p>
-//               <div className="social-links">
-//                 <span>📱</span><span>💬</span><span>🎯</span>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* CTA Section */}
-//       <section className="cta-section">
-//         <div className="cta-background">
-//           <div className="liquid-animation" />
-//           <div className="floating-icons">
-//             <span className="float-icon icon-1">✨</span>
-//             <span className="float-icon icon-2">🚀</span>
-//             <span className="float-icon icon-3">💡</span>
-//             <span className="float-icon icon-4">🎨</span>
-//             <span className="float-icon icon-5">📝</span>
-//           </div>
-//         </div>
-//         <div className="container">
-//           <div className="cta-content">
-//             <h2>Ready to Start Your Journey?</h2>
-//             <p>Join the EchoBloom community today and transform the way you create and share content. 
-//                Your audience is waiting to hear your unique voice.</p>
-//             <div className="cta-buttons">
-//               <button className="btn-primary-large">
-//                 <span>🎯</span>
-//                 Get Started Free
-//               </button>
-//               <button className="btn-secondary-large">
-//                 <span>📞</span>
-//                 Schedule Demo
-//               </button>
-//             </div>
-//             <p className="cta-note">No credit card required • 14-day free trial • Cancel anytime</p>
-//           </div>
-//         </div>
-//       </section>
-//     </article>
-//   );
-// };
-
-// export default About;
-
