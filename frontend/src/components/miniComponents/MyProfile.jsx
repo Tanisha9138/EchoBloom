@@ -6,7 +6,10 @@ const MyProfile = () => {
   return (
     <section className="profile">
       <div className="avatar">
-        <img src="/pic.jpg" alt="avatar" />
+        <img
+          src={user.avatar && user.avatar.url ? user.avatar.url : "/user.jpg"}
+          alt="avatar"
+        />
       </div>
       <div className="user-detail">
         <p>
