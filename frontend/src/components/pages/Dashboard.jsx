@@ -1,14 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useLocation, Navigate } from "react-router-dom";
 import SideBar from "../layout/SideBar";
 import MyBlogs from "../miniComponents/MyBlogs";
 import MyProfile from "../miniComponents/MyProfile";
 import CreateBlog from "../miniComponents/CreateBlog";
 import Chart from "../miniComponents/Chart";
 import { Context } from "../../main";
-import { Navigate } from "react-router-dom";
+
 const Dashboard = () => {
   const [component, setComponent] = useState("MyBlogs");
   const { mode, isAuthenticated } = useContext(Context);
+  const location = useLocation();
+
+  // Handle template navigation from TemplatesPage
+  useEffect(() => {
+    // Check if navigated from templates page with createBlog intent
+    if (location.state?.createBlog || location.state?.template) {
+      setComponent("Create Blog");
+    }
+  }, [location.state]);
 
   if (!isAuthenticated) {
     return <Navigate to={"/"} />;
@@ -22,7 +32,10 @@ const Dashboard = () => {
       {component === "My Profile" ? (
         <MyProfile />
       ) : component === "Create Blog" ? (
-        <CreateBlog />
+        <CreateBlog 
+          selectedTemplate={location.state?.templateData} 
+          templateId={location.state?.template}
+        />
       ) : component === "Analytics" ? (
         <Chart />
       ) : (
