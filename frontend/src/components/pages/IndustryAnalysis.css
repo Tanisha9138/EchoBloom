@@ -1,0 +1,551 @@
+/* Industry Analysis Landing Page Styles */
+.industry-landing {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #334155, #1e293b, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.industry-landing-card {
+  width: 100%;
+  max-width: 28rem;
+  background: #334155;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+}
+
+.industry-landing-title {
+  color: white;
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.industry-landing-badges {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.industry-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.industry-badge-primary {
+  background-color: #5eead4;
+  color: #0f172a;
+}
+
+.industry-badge-secondary {
+  background-color: #475569;
+  color: white;
+}
+
+.industry-landing-subtitle {
+  color: #cbd5e1;
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.industry-structure-section {
+  margin-bottom: 2rem;
+}
+
+.industry-structure-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.industry-structure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: #e2e8f0;
+}
+
+.industry-structure-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.industry-structure-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #5eead4;
+}
+
+.industry-start-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to right, #fca5a5, #f9a8d4, #5eead4);
+  color: #0f172a;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.industry-start-btn:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+}
+
+/* Industry Analysis Editor Styles */
+.industry-editor {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+}
+
+.industry-header {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.industry-header-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.industry-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.industry-back-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.industry-back-btn:hover {
+  background: rgba(51, 65, 85, 0.5);
+  transform: scale(1.05);
+}
+
+.industry-header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.industry-header-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #5eead4;
+}
+
+.industry-header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.industry-header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.industry-save-btn,
+.industry-export-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.industry-save-btn {
+  background: #475569;
+  color: white;
+}
+
+.industry-save-btn:hover {
+  background: #334155;
+  transform: scale(1.05);
+}
+
+.industry-export-btn {
+  background: #14b8a6;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.2);
+}
+
+.industry-export-btn:hover {
+  background: #0d9488;
+  transform: scale(1.05);
+}
+
+.industry-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Sidebar Styles */
+.industry-sidebar {
+  grid-column: span 3;
+}
+
+.industry-sidebar-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  padding: 1rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.industry-sidebar-header {
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.industry-sidebar-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.industry-section-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.industry-section-btn.active {
+  background: linear-gradient(to right, #14b8a6, #06b6d4);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.2);
+  transform: scale(1.05);
+}
+
+.industry-section-btn:not(.active) {
+  background: rgba(51, 65, 85, 0.3);
+  color: #cbd5e1;
+}
+
+.industry-section-btn:not(.active):hover {
+  background: rgba(51, 65, 85, 0.5);
+  transform: scale(1.02);
+}
+
+.industry-section-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.industry-section-btn.active .industry-section-icon {
+  color: white;
+}
+
+.industry-section-btn:not(.active) .industry-section-icon {
+  color: #94a3b8;
+}
+
+.industry-section-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  flex: 1;
+  text-align: left;
+}
+
+.industry-section-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.industry-section-btn.active .industry-section-indicator {
+  background: white;
+}
+
+.industry-section-btn:not(.active) .industry-section-indicator {
+  background: #5eead4;
+}
+
+/* Main Editor Styles */
+.industry-main {
+  grid-column: span 9;
+}
+
+.industry-editor-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  overflow: hidden;
+}
+
+.industry-editor-header {
+  background: linear-gradient(to right, #1e293b, #334155);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.industry-editor-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.industry-editor-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.industry-editor-title-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #5eead4;
+}
+
+.industry-editor-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.industry-ai-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 0.5rem;
+  color: #d8b4fe;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.industry-ai-btn:hover {
+  background: rgba(168, 85, 247, 0.3);
+  transform: scale(1.05);
+}
+
+.industry-editor-description {
+  color: #94a3b8;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.industry-editor-body {
+  padding: 2rem;
+}
+
+.industry-input-wrapper {
+  margin-bottom: 1rem;
+}
+
+.industry-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 2px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.industry-input::placeholder {
+  color: #64748b;
+}
+
+.industry-input:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.industry-textarea {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 2px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.75rem;
+  color: #e2e8f0;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  resize: none;
+  line-height: 1.75;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.industry-textarea::placeholder {
+  color: #64748b;
+}
+
+.industry-textarea:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.industry-word-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+.industry-char-count {
+  color: #64748b;
+}
+
+.industry-words {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Progress Footer Styles */
+.industry-progress-footer {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.industry-progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.industry-progress-text {
+  color: #94a3b8;
+}
+
+.industry-progress-percent {
+  color: #5eead4;
+  font-weight: 600;
+}
+
+.industry-progress-bar {
+  height: 0.5rem;
+  background: #1e293b;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.industry-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #5eead4, #22d3ee, #14b8a6);
+  transition: all 0.5s ease-out;
+  box-shadow: 0 0 10px rgba(94, 234, 212, 0.5);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Scrollbar Styles */
+.industry-textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.industry-textarea::-webkit-scrollbar-track {
+  background: rgba(51, 65, 85, 0.3);
+  border-radius: 4px;
+}
+
+.industry-textarea::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.5);
+  border-radius: 4px;
+}
+
+.industry-textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .industry-sidebar {
+    grid-column: span 4;
+  }
+  
+  .industry-main {
+    grid-column: span 8;
+  }
+}
+
+@media (max-width: 768px) {
+  .industry-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .industry-sidebar,
+  .industry-main {
+    grid-column: span 1;
+  }
+  
+  .industry-sidebar-card {
+    position: static;
+  }
+  
+  .industry-header-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .industry-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
