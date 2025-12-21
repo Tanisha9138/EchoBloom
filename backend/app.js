@@ -8,6 +8,7 @@ import userRouter from "./routes/userRouter.js";
 import blogRouter from "./routes/blogRouter.js";
 import fileUpload from "express-fileupload";
 import chatRouter from "./routes/chatRouter.js";
+import translateRouter from "./routes/translateRouter.js";
 
 const app = express();
 dotenv.config({path: "./config/config.env"});
@@ -24,7 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/chat", chatRouter);
-
+app.use("/api/v1/translate", translateRouter);
 app.use(
     fileUpload({
     useTempFiles: true,
