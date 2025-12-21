@@ -132,14 +132,17 @@ const EditorTemplatesPage = () => {
   }
 };
 
- const handleToolAction = (tool) => {
+const handleToolAction = (tool) => {
   if (tool.name === 'Content Ideas Generator') {
     navigate('/content-ideas');
   } else if (tool.name === 'Headline Creator') {
     navigate('/headline-creator');
   } else if (tool.name === 'Content Expander') {
     navigate('/content-expander');
-  }else {
+  } else if(tool.name === 'Image Suggestion') {
+    navigate('/image-suggestion');
+  }
+  else {
     alert(`Activating ${tool.name}! This would open the AI tool interface.`);
   }
 };
