@@ -26,7 +26,9 @@ import IndustryAnalysis from './components/pages/IndustryAnalysisApp';
 import ContentIdeasGenerator from './components/pages/ContentIdeasGenerator';
 import HeadlineCreator from './components/pages/HeadlineCreator';
 import ContentExpander from './components/pages/ContentExpander';
-
+import GlobalFeatures from "./components/pages/globalreach"; 
+import PrivacyFeatures from "./components/pages/privacycontrol"; 
+import ImageSuggestionTool from "./components/pages/imagesuggestion";
 // import AnalyticsPage from './components/pages/AnalyticsPage';
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -115,7 +117,9 @@ const App = () => {
           <Route path="/content-ideas" element={<ContentIdeasGenerator />} />
           <Route path="/headline-creator" element={<HeadlineCreator />} /> 
           <Route path="/content-expander" element={<ContentExpander />} />
-          
+          <Route path="/global-features" element={<GlobalFeatures />} />
+          <Route path="/privacy-features" element={<PrivacyFeatures/>} />
+          <Route path="/image-suggestion" element={<ImageSuggestionTool />} /> {/* ✅ ADD THIS LINE */}
         </Routes>
         <Footer />
         <Toaster />
