@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../main";
 import { Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "../../DiscoveryResultsModal.css";
 
 const DiscoveryResultsModal = ({ isOpen, onClose, blogs, preferences, onReset }) => {

@@ -105,7 +105,7 @@ const UpdateBlog = () => {
 
     try {
       const { data } = await axios.put(
-        `http://localhost:4000/api/v1/blog/update/${id}`,
+        `https://echobloom-backend.onrender.com/api/v1/blog/update/${id}`,
         updatedBlog,
         { withCredentials: true }
       );

@@ -20,7 +20,7 @@ const MyBlogs = () => {
 
   const deleteBlogHandler = async (id) => {
     await axios
-      .delete(`http://localhost:4000/api/v1/blog/delete/${id}`, {
+      .delete(`https://echobloom-backend.onrender.com/api/v1/blog/delete/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
