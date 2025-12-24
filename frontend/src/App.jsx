@@ -67,7 +67,7 @@ const App = () => {
     const fetchBlogs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/blog/all",
+          "https://echobloom-backend.onrender.com/api/v1/blog/all",
           { withCredentials: true }
         );
         setBlogs(data.allBlogs);
