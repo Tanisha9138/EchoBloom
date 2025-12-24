@@ -1,3 +1,27 @@
+// class ErrorHandler extends Error {
+//     constructor(message, statusCode) {
+//         super(message);
+//         this.statusCode = statusCode;
+//     }
+// }
+
+// export const errorMiddleware = (err, req, res, next) => {
+//     err.message = err.message || "Internal Server Error";
+//     err.statusCode = err.statusCode || 500;
+
+//     if(err.name === "CastError"){
+//         const message = `Invalid: Resource not found: ${err.path}`;
+//         err = new ErrorHandler(message, 404);
+//     }
+
+//     return res.status(err.statusCode).json({
+//         success: false,
+//         message: err.message,
+//     });
+// };
+
+// export default ErrorHandler;
+
 class ErrorHandler extends Error {
     constructor(message, statusCode) {
         super(message);
@@ -9,15 +33,23 @@ export const errorMiddleware = (err, req, res, next) => {
     err.message = err.message || "Internal Server Error";
     err.statusCode = err.statusCode || 500;
 
-    if(err.name === "CastError"){
-        const message = `Invalid: Resource not found: ${err.path}`;
+    if (err.name === "CastError") {
+        const message = `Invalid resource: ${err.path}`;
         err = new ErrorHandler(message, 404);
     }
 
-    return res.status(err.statusCode).json({
-        success: false,
-        message: err.message,
-    });
+    return res
+        .status(err.statusCode)
+        .setHeader(
+            "Access-Control-Allow-Origin",
+            "https://echobloom-frontend.onrender.com"
+        )
+        .setHeader("Access-Control-Allow-Credentials", "true")
+        .json({
+            success: false,
+            message: err.message,
+        });
 };
 
 export default ErrorHandler;
+
