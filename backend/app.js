@@ -15,15 +15,17 @@ dotenv.config({path: "./config/config.env"});
 
 app.use(
     cors({
-        origin: [
-            "http://localhost:5173",
-            process.env.FRONTEND_URL
-        ],
+        // origin: [
+        //     "http://localhost:5173",
+        //     process.env.FRONTEND_URL
+        // ],
+        origin: "https://echobloom-frontend.onrender.com",
         methods: ["GET", "PUT", "DELETE", "POST"],
         credentials: true,
+        allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
-
+app.options("*", cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
