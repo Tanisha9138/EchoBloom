@@ -9,7 +9,7 @@ const PopularAuthors = () => {
     const fetchAuthors = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/user/authors",
+          "https://echobloom-backend.onrender.com/api/v1/user/authors",
           { withCredentials: true }
         );
         setAuthors(data.authors);
